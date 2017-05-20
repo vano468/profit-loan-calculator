@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  namespace :api do
+    %i(borrowers payments).each do |resource|
+      resources resource, only: %i(create update destroy)
+    end
+  end
+
+  get '/', to: 'pages#index'
 end
