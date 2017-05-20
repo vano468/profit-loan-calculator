@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20170519145348) do
 
   create_table "borrowers", force: :cascade do |t|
     t.decimal "credit_amount", precision: 15, scale: 2
-    t.date "credit_taken_at"
     t.integer "credit_term"
     t.decimal "base_rate", precision: 8, scale: 5
     t.decimal "delay_rate", precision: 8, scale: 5
@@ -27,8 +26,8 @@ ActiveRecord::Schema.define(version: 20170519145348) do
 
   create_table "payments", force: :cascade do |t|
     t.bigint "borrower_id"
+    t.integer "month"
     t.decimal "amount", precision: 15, scale: 2
-    t.date "paid_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["borrower_id"], name: "index_payments_on_borrower_id"
