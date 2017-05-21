@@ -2,19 +2,22 @@ class ProfitAnalyzer
   PERCENT_MONTHS_BASE = 12
   AnalyzedData = Struct.new(:total_paid, :profit, :profit_rate)
 
-  attr_reader :borrower
+  attr_reader :borrower, :cacher
 
-  def initialize(borrower)
+  def initialize(borrower, cacher = ResourceCacher)
     @borrower = borrower
     @payments = borrower.payments
+    @cacher = cacher.new(payments)
   end
 
   def analyze
-    total_paid  = payments.sum(&:amount)
-    profit      = total_paid - credit_amount
-    profit_rate = profit / credit_amount / credit_term * PERCENT_MONTHS_BASE
+    cacher.fetch do
+      total_paid  = payments.sum(&:amount)
+      profit      = total_paid - credit_amount
+      profit_rate = profit / credit_amount / credit_term * PERCENT_MONTHS_BASE
 
-    AnalyzedData.new(total_paid, profit, profit_rate)
+      AnalyzedData.new(total_paid, profit, profit_rate)
+    end
   end
 
   private
