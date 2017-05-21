@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :payment do
+    month 1
     amount 100_000
-    paid_at { Date.today }
   end
 end
