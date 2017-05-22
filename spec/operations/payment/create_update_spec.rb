@@ -40,4 +40,22 @@ describe 'Payment::Create|Update' do
       it { expect(contract_errors).to include(:month) }
     end
   end
+
+  describe Payment::Update do
+    let!(:payment) { create(:payment) }
+
+    subject { described_class.(id: id, payment: params) }
+
+    context 'when id is valid' do
+      let(:id) { payment.id }
+
+      it { expect(subject.success?).to be(true) }
+    end
+
+    context 'when id in invalid' do
+      let(:id) { 0 }
+
+      it { expect(subject.success?).to be(false) }
+    end
+  end
 end
