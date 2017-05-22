@@ -20,6 +20,7 @@ describe 'Borrower::Create|Update' do
 
     context 'when all params are valid' do
       it { expect(subject.success?).to be(true) }
+      it { expect { subject }.to change { Borrower.count }.by(1) }
     end
 
     context 'when some params are missed' do
@@ -27,6 +28,7 @@ describe 'Borrower::Create|Update' do
 
       it { expect(subject.success?).to be(false) }
       it { expect(contract_errors).to include(:credit_term, :base_rate) }
+      it { expect { subject }.to_not change { Borrower.count } }
     end
 
     context 'when some params are invalid' do
@@ -34,6 +36,7 @@ describe 'Borrower::Create|Update' do
 
       it { expect(subject.success?).to be(false) }
       it { expect(contract_errors).to include(:credit_amount) }
+      it { expect { subject }.to_not change { Borrower.count } }
     end
   end
 

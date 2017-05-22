@@ -18,12 +18,14 @@ describe 'Payment::Create|Update' do
 
     context 'when all params are valid' do
       it { expect(subject.success?).to be(true) }
+      it { expect { subject }.to change { Payment.count }.by(1) }
     end
 
     context 'when borrower is invalid' do
       let(:borrower_id) { 0 }
 
       it { expect(subject.success?).to be(false) }
+      it { expect { subject }.to_not change { Payment.count } }
     end
 
     context 'when some params are missed' do
@@ -31,6 +33,7 @@ describe 'Payment::Create|Update' do
 
       it { expect(subject.success?).to be(false) }
       it { expect(contract_errors).to include(:amount) }
+      it { expect { subject }.to_not change { Payment.count } }
     end
 
     context 'when some params are invalid' do
@@ -38,6 +41,7 @@ describe 'Payment::Create|Update' do
 
       it { expect(subject.success?).to be(false) }
       it { expect(contract_errors).to include(:month) }
+      it { expect { subject }.to_not change { Payment.count } }
     end
   end
 
