@@ -1,0 +1,18 @@
+.borrower.panel.panel-primary
+  .panel-heading
+    h3.panel-title
+      | {{ item.display_name }}
+      a.action-btn.destroy-btn.pull-right(@click='destroy')
+        span.glyphicon.glyphicon-remove
+      a.action-btn.edit-btn.pull-right(@click='editMode = !editMode')
+        span.glyphicon.glyphicon-pencil
+
+  .panel-body
+    table.attributes.table.table-striped
+      tbody
+        tr
+          td.attr_name Base rate
+          td.attr_value {{ item.display_base_rate }}
+        tr
+          td.attr_name Delay rate
+          td.attr_value {{ item.display_delay_rate }}

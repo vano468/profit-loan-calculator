@@ -1,14 +1,6 @@
-script type='text/x-template' id='x-template-borrowers'     = render partial: 'vue/borrower'
+script type='text/x-template' id='x-template-borrowers'     = render partial: 'vue/borrowers'
 script type='text/x-template' id='x-template-borrower'      = render partial: 'vue/borrower'
 script type='text/x-template' id='x-template-borrower_form' = render partial: 'vue/borrower_form'
 
 #profit-loan-calculator
-
-  .row
-    .col-md-6
-      h3 Borrowers
-      hr
-    .col-md-6
-      h3 Add borrower?
-      hr
-      borrower-form
+  borrowers
