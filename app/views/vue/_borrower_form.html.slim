@@ -1,0 +1,24 @@
+form.borrower-form(v-on:submit='persist')
+  fieldset
+    .row
+      .form-group.col-md-12(v-bind:class='{ "has-error": errors.credit_amount }')
+        label.control-label Credit amount
+        input.form-control(type='number' v-model='borrower.credit_amount')
+
+    .row
+      .form-group.col-md-12(v-bind:class='{ "has-error": errors.credit_term }')
+        label.control-label Credit term
+        input.form-control(type='number' v-model='borrower.credit_term')
+
+    .row
+      .form-group.col-md-6(v-bind:class='{ "has-error": errors.base_rate }')
+        label.control-label Base rate
+        input.form-control(type='number' step='0.001' v-model='borrower.base_rate')
+
+      .form-group.col-md-6(v-bind:class='{ "has-error": errors.delay_rate }')
+        label.control-label Delay rate
+        input.form-control(type='number' step='0.001' v-model='borrower.delay_rate')
+
+    .row
+      .form-group.col-md-12
+        button.btn.btn-primary(type='submit') Save
