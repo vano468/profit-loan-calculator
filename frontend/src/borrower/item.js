@@ -17,13 +17,11 @@ export default {
   },
   mounted() {
     EventBus.$on('payments:updated', borrowerId => {
-      if (borrowerId === this.item.id) {
-        this.updateAttributes();
-      }
+      if (borrowerId === this.item.id) { this.updateItem(); }
     });
   },
   methods: {
-    updateAttributes() {
+    updateItem() {
       this.resource.get(
         { id: this.item.id }
       ).then(
