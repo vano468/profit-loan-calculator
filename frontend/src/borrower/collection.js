@@ -1,5 +1,5 @@
-import Borrower from 'borrower/item';
-import BorrowerForm from 'borrower/form';
+import Borrower from './item';
+import BorrowerForm from './form';
 
 export default {
   template: '#x-template-borrowers',

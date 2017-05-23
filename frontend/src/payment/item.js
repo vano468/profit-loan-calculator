@@ -1,10 +1,9 @@
-import BorrowerForm from './form';
-import Payments from '../payment/collection';
-import { BorrowerResource } from '../shared/resources';
+import PaymentForm from './form';
+import { PaymentResource } from '../shared/resources';
 import { updateAttributes } from '../shared/tools';
 
 export default {
-  template: '#x-template-borrower',
+  template: '#x-template-payment',
   props: {
     item: Object
   },
@@ -16,18 +15,17 @@ export default {
   methods: {
     destroy() {
       if (confirm('Are you sure?')) {
-        BorrowerResource().delete({ id: this.item.id }).then(
+        PaymentResource().delete({ id: this.item.id }).then(
           (_) => { this.$emit('item:destroyed'); }
         );
       }
     },
     onItemPersisted(data) {
       this.editMode = false;
-      updateAttributes(this.item, data.borrower);
+      updateAttributes(this.item, data.payment);
     }
   },
   components: {
-    BorrowerForm,
-    Payments
+    PaymentForm
   }
 };
