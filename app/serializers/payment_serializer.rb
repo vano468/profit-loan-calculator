@@ -1,5 +1,5 @@
 class PaymentSerializer < ActiveModel::Serializer
-  include ActionView::Helpers::NumberHelper
+  include Serializer::Concerns::Formatter
 
   attributes :id, :month, :amount
   attributes :display_info, :display_amount
@@ -9,6 +9,6 @@ class PaymentSerializer < ActiveModel::Serializer
   end
 
   def display_amount
-    number_with_delimiter(object.amount) + ' ₽'
+    format_money_in_rub(object.amount)
   end
 end

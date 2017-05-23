@@ -16,6 +16,15 @@
         tr
           td.attr_name Delay rate
           td.attr_value {{ item.display_delay_rate }}
+        tr
+          td.attr_name Total paid
+          td.attr_value {{ item.analyzed_data.total_paid }}
+        tr
+          td.attr_name Profit
+          td.attr_value {{ item.analyzed_data.profit }}
+        tr
+          td.attr_name Profit rate
+          td.attr_value {{ item.analyzed_data.profit_rate }}
 
     span(v-if='editMode')
       borrower-form(:model='item' v-on:item:persisted='onItemPersisted')
