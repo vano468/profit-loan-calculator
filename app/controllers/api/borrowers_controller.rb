@@ -1,17 +1,17 @@
 class Api::BorrowersController < ApiController
   def show
-    run_operation(Borrower::Show, as: :render)
+    run_operation(Borrowers::Show, as: :render)
   end
 
   def create
-    run_operation(Borrower::Create, as: :model)
+    run_operation(Borrowers::Create, as: :model)
   end
 
   def update
-    run_operation(Borrower::Update, as: :model)
+    run_operation(Borrowers::Update, as: :model)
   end
 
   def destroy
-    run_operation(Borrower::Destroy)
+    run_operation(Borrowers::Destroy)
   end
 end

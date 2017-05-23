@@ -1,4 +1,4 @@
-class Payment::Create < Trailblazer::Operation
+class Payments::Create < Trailblazer::Operation
   step Model(Payment, :new)
   step :assign_borrower!
   step Contract::Build(constant: PaymentForm)

@@ -1,13 +1,13 @@
 class Api::PaymentsController < ApiController
   def create
-    run_operation(Payment::Create, as: :model)
+    run_operation(Payments::Create, as: :model)
   end
 
   def update
-    run_operation(Payment::Update, as: :model)
+    run_operation(Payments::Update, as: :model)
   end
 
   def destroy
-    run_operation(Payment::Destroy)
+    run_operation(Payments::Destroy)
   end
 end

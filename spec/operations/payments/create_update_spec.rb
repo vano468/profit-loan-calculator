@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Payment::Create|Update' do
+describe 'Payments::Create|Update' do
   let(:borrower) { create(:borrower) }
   let(:month) { '1' }
   let(:amount) { '192000' }
@@ -12,7 +12,7 @@ describe 'Payment::Create|Update' do
   end
   let(:params) { default_params }
 
-  describe Payment::Create do
+  describe Payments::Create do
     subject { described_class.(borrower_id: borrower_id, payment: params) }
     let(:contract_errors) { subject['contract.default'].errors.messages }
 
@@ -45,7 +45,7 @@ describe 'Payment::Create|Update' do
     end
   end
 
-  describe Payment::Update do
+  describe Payments::Update do
     let!(:payment) { create(:payment) }
 
     subject { described_class.(id: id, payment: params) }

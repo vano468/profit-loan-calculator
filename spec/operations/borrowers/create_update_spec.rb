@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Borrower::Create|Update' do
+describe 'Borrowers::Create|Update' do
   let(:credit_amount) { '1000000' }
   let(:credit_term) { '6' }
   let(:base_rate) { '0.3' }
@@ -14,7 +14,7 @@ describe 'Borrower::Create|Update' do
   end
   let(:params) { default_params }
 
-  describe Borrower::Create do
+  describe Borrowers::Create do
     subject { described_class.(borrower: params) }
     let(:contract_errors) { subject['contract.default'].errors.messages }
 
@@ -40,7 +40,7 @@ describe 'Borrower::Create|Update' do
     end
   end
 
-  describe Borrower::Update do
+  describe Borrowers::Update do
     let!(:borrower) { create(:borrower) }
 
     subject do

@@ -1,5 +1,5 @@
-class Borrower::Create < Trailblazer::Operation
-  step Model(Borrower, :new)
+class Borrowers::Update < Trailblazer::Operation
+  step Model(Borrower, :find_by)
   step Contract::Build(constant: BorrowerForm)
   step Contract::Validate(key: :borrower)
   step Contract::Persist()
