@@ -7,7 +7,7 @@ class BorrowerSerializer < ActiveModel::Serializer
   has_many :payments
 
   def display_name
-    "borrower##{object.id} get #{display_credit_amount} ₽ for #{object.credit_term} months"
+    "borrower##{object.id} gets #{display_credit_amount} ₽ for #{object.credit_term} months"
   end
 
   def display_credit_amount

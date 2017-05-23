@@ -13,9 +13,11 @@ export default {
     }
   },
   methods: {
-    destroy(e) {
+    destroy() {
       if (confirm('Are you sure?')) {
-
+        BorrowerResource().delete({ id: this.item.id }).then(
+          (_) => { this.$emit('item:destroyed'); }
+        );
       }
     },
     onItemPersisted(data) {
