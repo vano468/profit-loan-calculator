@@ -1,5 +1,6 @@
 import Payment from './item';
 import PaymentForm from './form';
+import { EventBus } from '../shared/tools';
 
 export default {
   template: '#x-template-payments',
@@ -15,10 +16,12 @@ export default {
   methods: {
     onItemPersisted(data) {
       this.addMode = false;
-      this.items.push(data.payment)
+      this.items.push(data.payment);
+      EventBus.$emit('payments:updated', this.borrower_id);
     },
     onItemDestroyed(index) {
       this.items.splice(index, 1);
+      EventBus.$emit('payments:updated', this.borrower_id);
     }
   },
   components: {

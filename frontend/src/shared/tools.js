@@ -10,3 +10,5 @@ export const makeObjectDuplicate = (object, attributes, except = []) => {
   for (let key of except) { newObject[key] = undefined; }
   return newObject;
 };
+
+export const EventBus = new Vue(); // https://alligator.io/vuejs/global-event-bus

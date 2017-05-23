@@ -2,6 +2,7 @@ import BorrowerForm from './form';
 import Payments from '../payment/collection';
 import { BorrowerResource } from '../shared/resources';
 import { updateAttributes } from '../shared/tools';
+import { EventBus } from '../shared/tools';
 
 export default {
   template: '#x-template-borrower',
@@ -10,13 +11,30 @@ export default {
   },
   data() {
     return {
-      editMode: false
+      editMode: false,
+      resource: BorrowerResource()
     }
   },
+  mounted() {
+    EventBus.$on('payments:updated', borrowerId => {
+      if (borrowerId === this.item.id) {
+        this.updateAttributes();
+      }
+    });
+  },
   methods: {
+    updateAttributes() {
+      this.resource.get(
+        { id: this.item.id }
+      ).then(
+        (response) => {
+          this.onItemPersisted(response.data);
+        }
+      );
+    },
     destroy() {
       if (confirm('Are you sure?')) {
-        BorrowerResource().delete({ id: this.item.id }).then(
+        this.resource.delete({ id: this.item.id }).then(
           (_) => { this.$emit('item:destroyed'); }
         );
       }

@@ -1,4 +1,8 @@
 class Api::BorrowersController < ApiController
+  def show
+    run_operation(Borrower::Show, as: :render)
+  end
+
   def create
     run_operation(Borrower::Create, as: :model)
   end

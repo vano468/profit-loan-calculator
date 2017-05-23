@@ -1,7 +1,7 @@
 class PaymentSerializer < ActiveModel::Serializer
   include Serializer::Concerns::Formatter
 
-  attributes :id, :month, :amount
+  attributes :id, :borrower_id, :month, :amount
   attributes :display_info, :display_amount
 
   def display_info
