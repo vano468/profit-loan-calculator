@@ -7,7 +7,7 @@ class ProfitAnalyzer
       .includes(:payments).all
       .map { |b| new(b).analyze }
 
-    data.inject do |memo, item|
+    data.inject(AnalyzedData.new(*[0]*4)) do |memo, item|
       AnalyzedData.members.each do |attr|
         memo[attr] += item[attr]
       end; memo
