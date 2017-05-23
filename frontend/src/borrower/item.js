@@ -39,6 +39,7 @@ export default {
     onItemPersisted(data) {
       this.editMode = false;
       updateAttributes(this.item, data.borrower);
+      EventBus.$emit('borrowers:updated');
     }
   },
   components: {
