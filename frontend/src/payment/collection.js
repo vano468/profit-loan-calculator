@@ -4,7 +4,13 @@ import PaymentForm from './form';
 export default {
   template: '#x-template-payments',
   props: {
-    items: Array
+    items: Array,
+    borrower_id: Number
+  },
+  data() {
+    return {
+      addMode: false,
+    }
   },
   methods: {
     onItemPersisted(data) {

@@ -1,0 +1,10 @@
+.payment.panel.panel-default
+  .panel-heading
+    | {{ item.display_info }}
+    a.action-btn.destroy-btn.pull-right(@click='destroy')
+      span.glyphicon.glyphicon-remove
+    a.action-btn.edit-btn.pull-right(@click='editMode = !editMode')
+      span.glyphicon.glyphicon-pencil
+
+  .panel-body(v-if='editMode')
+    payment-form(:model='item' v-on:item:persisted='onItemPersisted')

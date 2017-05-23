@@ -1,0 +1,6 @@
+.payments
+  h4.title(v-if='items.length > 0') Payments
+  payment(v-for='(item, index) in items' :item='item' :key='item.id' v-on:item:destroyed='onItemDestroyed(index)')
+
+  a.add-new.pull-right(@click='addMode = !addMode') Add new payment?
+  payment-form(v-if='addMode' :model='{ borrower_id: borrower_id }' v-on:item:persisted='onItemPersisted')

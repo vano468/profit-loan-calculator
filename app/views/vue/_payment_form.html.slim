@@ -1,0 +1,15 @@
+form.payment-form(v-on:submit='persist')
+  fieldset
+    .row
+      .form-group.col-md-12(v-bind:class=' { "has-error" : errors.month } ')
+        label.control-label Month
+        input.form-control(type='number' v-model='payment.month')
+
+    .row
+      .form-group.col-md-12(v-bind:class=' { "has-error" : errors.amount } ')
+        label.control-label Amount
+        input.form-control(type='number' v-model='payment.amount')
+
+    .row
+      .form-group.col-md-12
+        button.btn.btn-primary(type='submit') Save

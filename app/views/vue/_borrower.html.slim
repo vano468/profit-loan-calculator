@@ -19,3 +19,6 @@
 
     span(v-if='editMode')
       borrower-form(:model='item' v-on:item:persisted='onItemPersisted')
+
+    hr
+    payments(:items='item.payments' :borrower_id='item.id')
