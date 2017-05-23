@@ -7,19 +7,28 @@ class BorrowerSerializer < ActiveModel::Serializer
   has_many :payments
 
   def display_name
-    credit_amount = number_with_delimiter(object.credit_amount)
-    "borrower##{object.id} | #{credit_amount} ₽ for #{object.credit_term} months"
+    "borrower##{object.id} get #{display_credit_amount} ₽ for #{object.credit_term} months"
+  end
+
+  def display_credit_amount
+    number_with_delimiter(object.credit_amount)
   end
 
   def display_base_rate
-    number_to_percentage(object.base_rate * 100, precision: 1)
+    format_rate(object.base_rate)
   end
 
   def display_delay_rate
-    number_to_percentage(object.delay_rate * 100, precision: 1)
+    format_rate(object.delay_rate)
   end
 
   def analyzed_data
     ProfitAnalyzer.new(object).analyze.to_h
+  end
+
+  private
+
+  def format_rate(value)
+    number_to_percentage(value * 100, precision: 1)
   end
 end

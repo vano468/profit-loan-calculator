@@ -1,3 +1,4 @@
+import BorrowerForm from 'borrower/form';
 import { BorrowerResource } from '../shared/resources';
 import { updateAttributes } from '../shared/tools';
 
@@ -21,5 +22,8 @@ export default {
       this.editMode = false;
       updateAttributes(this.item, data.borrower);
     }
+  },
+  components: {
+    BorrowerForm
   }
 };

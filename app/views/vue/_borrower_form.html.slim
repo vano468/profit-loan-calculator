@@ -3,7 +3,7 @@ form.borrower-form(v-on:submit='persist')
     .row
       .form-group.col-md-12(v-bind:class='{ "has-error": errors.credit_amount }')
         label.control-label Credit amount
-        input.form-control(type='number' v-model='borrower.credit_amount')
+        input.form-control(type='number' step='0.01' v-model='borrower.credit_amount')
 
     .row
       .form-group.col-md-12(v-bind:class='{ "has-error": errors.credit_term }')
