@@ -16,3 +16,6 @@
         tr
           td.attr_name Delay rate
           td.attr_value {{ item.display_delay_rate }}
+
+    span(v-if='editMode')
+      borrower-form(:model='item' v-on:item:persisted='onItemPersisted')

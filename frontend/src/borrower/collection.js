@@ -1,19 +1,24 @@
-export default () => {
-  Vue.component('borrowers', {
-    template: '#x-template-borrowers',
-    props: {
-      items: {
-        type: Array,
-        default: () => gon.data.borrowers
-      }
+import Borrower from 'borrower/item';
+import BorrowerForm from 'borrower/form';
+
+export default {
+  template: '#x-template-borrowers',
+  props: {
+    items: {
+      type: Array,
+      default: () => gon.data.borrowers
+    }
+  },
+  methods: {
+    onItemPersisted(data) {
+      this.items.unshift(data.borrower)
     },
-    methods: {
-      onItemPersisted(data) {
-        this.items.unshift(data.borrower)
-      },
-      onItemDestroyed(index) {
-        this.items.splice(index, 1);
-      }
-    },
-  });
+    onItemDestroyed(index) {
+      this.items.splice(index, 1);
+    }
+  },
+  components: {
+    Borrower,
+    BorrowerForm
+  }
 };
