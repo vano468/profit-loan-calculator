@@ -8,7 +8,7 @@ form.payment-form(v-on:submit='persist')
     .row
       .form-group.col-md-12(v-bind:class=' { "has-error" : errors.amount } ')
         label.control-label Amount
-        input.form-control(type='number' v-model='payment.amount')
+        input.form-control(type='number' step='0.001' v-model='payment.amount')
 
     .row
       .form-group.col-md-12

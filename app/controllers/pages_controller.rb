@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   include Resource::Serializable
 
   def index
-    gon.data = serialize(Borrower.all)
+    resource = Borrower.includes(:payments).order(id: :desc)
+    gon.data = serialize(resource)
   end
 end

@@ -14,7 +14,8 @@ export default {
   },
   methods: {
     onItemPersisted(data) {
-      this.items.unshift(data.payment)
+      this.addMode = false;
+      this.items.push(data.payment)
     },
     onItemDestroyed(index) {
       this.items.splice(index, 1);
