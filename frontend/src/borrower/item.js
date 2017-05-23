@@ -1,8 +1,7 @@
 import BorrowerForm from './form';
 import Payments from '../payment/collection';
 import { BorrowerResource } from '../shared/resources';
-import { updateAttributes } from '../shared/tools';
-import { EventBus } from '../shared/tools';
+import { updateAttributes, EventBus } from '../shared/tools';
 
 export default {
   template: '#x-template-borrower',

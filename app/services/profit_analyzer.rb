@@ -1,9 +1,12 @@
 class ProfitAnalyzer
   PERCENT_MONTHS_BASE = 12
-  AnalyzedData = Struct.new(:total_paid, :profit, :profit_rate)
+  AnalyzedData = Struct.new(:total_paid, :profit, :profit_rate, :expected_rate)
 
   def self.analyze
-    data = Borrower.all.map { |b| new(b).analyze }
+    data = Borrower
+      .includes(:payments).all
+      .map { |b| new(b).analyze }
+
     data.inject do |memo, item|
       AnalyzedData.members.each do |attr|
         memo[attr] += item[attr]
@@ -27,12 +30,12 @@ class ProfitAnalyzer
       profit      = total_paid - credit_amount
       profit_rate = profit / credit_amount / credit_term * PERCENT_MONTHS_BASE
 
-      AnalyzedData.new(total_paid, profit, profit_rate)
+      AnalyzedData.new(total_paid, profit, profit_rate, base_rate)
     end
   end
 
   private
 
   attr_reader :payments
-  delegate :credit_amount, :credit_term, to: :borrower
+  delegate :credit_amount, :credit_term, :base_rate, to: :borrower
 end

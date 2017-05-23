@@ -1,7 +1,7 @@
 class Borrower::AnalyzedDataSerializer < ActiveModel::Serializer
   include Serializer::Concerns::Formatter
 
-  attributes :total_paid, :profit, :profit_rate
+  attributes :total_paid, :profit, :profit_rate, :expected_rate
 
   def total_paid
     format_money_in_rub(object.total_paid)
@@ -13,5 +13,9 @@ class Borrower::AnalyzedDataSerializer < ActiveModel::Serializer
 
   def profit_rate
     format_rate(object.profit_rate)
+  end
+
+  def expected_rate
+    format_rate(object.expected_rate)
   end
 end

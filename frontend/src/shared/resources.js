@@ -5,3 +5,7 @@ export const BorrowerResource = () => {
 export const PaymentResource = () => {
   return Vue.resource('/api/payments{/id}');
 };
+
+export const AnalyticsResource = () => {
+  return Vue.resource('/api/analytics{/id}');
+};
