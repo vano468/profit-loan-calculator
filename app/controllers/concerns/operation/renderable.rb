@@ -4,9 +4,9 @@ module Operation
       render status: :ok, json: op['model']
     end
 
-    def render_contract_errors(op)
-      render status: :bad_request,
-        json: { errors: op['contract.default']&.errors&.messages }
+    def render_model_errors(op)
+      errors = op['contract.default']&.errors&.messages.presence || op['errors.messages']
+      render status: :bad_request, json: { errors: errors }
     end
   end
 end
