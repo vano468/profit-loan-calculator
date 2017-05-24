@@ -12,7 +12,8 @@ class ProfitAnalyzer
         memo[attr] += item[attr]
       end; memo
     end.tap do |result|
-      result.to_h.each { |k,_| result[k] /= data.size }
+      data.empty? ? result :
+        result.to_h.each { |k,_| result[k] /= data.size }
     end
   end
 
